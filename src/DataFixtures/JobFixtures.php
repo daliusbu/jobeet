@@ -28,7 +28,7 @@ class JobFixtures extends Fixture implements OrderedFixtureInterface
         $jobSensioLabs->setPosition('Web Developer');
         $jobSensioLabs->setLocation('Paris, France');
         $jobSensioLabs->setDescription('You\'ve already developed websites with symfony and you want to work with Open-Source technologies. You have a minimum of 3 years experience in web development with PHP or Java and you wish to participate to development of Web 2.0 sites using the best frameworks available.');
-        $jobSensioLabs->setHowToApply('Send your resume to fabien.potencier [at] sensio.com');
+        $jobSensioLabs->setHowToApply('Send your resume to fabien.potencier@sensio.com');
         $jobSensioLabs->setPublic(true);
         $jobSensioLabs->setActivated(true);
         $jobSensioLabs->setToken('job_sensio_labs');
