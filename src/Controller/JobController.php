@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class JobController
  * @package App\Controller
- * @Route("/job")
+ *
  */
 class JobController extends AbstractController
 {
@@ -36,7 +36,7 @@ class JobController extends AbstractController
     /**
      * @param Job $job
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/{id}", name="job.show")
+     * @Route("job/{id}", name="job.show", requirements={"id"="\d+"}, methods="GET")
      */
     public function show(Job $job)
     {
