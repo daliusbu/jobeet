@@ -1,5 +1,6 @@
 <?php
 namespace App\Repository;
+use App\Entity\Category;
 use App\Entity\Job;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -39,5 +40,15 @@ class JobRepository extends EntityRepository
             ->setParameter('date', new \DateTime())
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function getPagnatedActiveJobsByCategoryquery(Category $category)
+    {
+        return $this->createQueryBuilder('j')
+            ->where('j.category = :category')
+            ->andWhere('j.expiresAt > :date')
+            ->setParameter('category', $category)
+            ->setParameter('date', new \DateTime())
+            ->getQuery();
     }
 }
