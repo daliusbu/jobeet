@@ -4,47 +4,26 @@ namespace App\Repository;
 
 use App\Entity\job;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method job|null find($id, $lockMode = null, $lockVersion = null)
- * @method job|null findOneBy(array $criteria, array $orderBy = null)
- * @method job[]    findAll()
- * @method job[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * Class CategoryRepository
+ * @package App\Repository
  */
-class CategoryRepository extends ServiceEntityRepository
+class CategoryRepository extends EntityRepository
 {
-    public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, job::class);
-    }
 
-//    /**
-//     * @return Category[] Returns an array of Category objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function findWithActiveJobs()
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('c')
+            ->innerJoin('c.jobs', 'j')
+            ->where('j.expiresAt > :date' )
+            ->setParameter('date', new \DateTime())
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Category
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+
 }
