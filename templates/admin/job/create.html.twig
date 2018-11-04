@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+
+    <h1>Create new Job</h1>
+
+    {% include 'admin/job/_form.html.twig' with {'form': form} only %}
+
+    <a class="btn btn-default" href="{{ path('admin.job.list') }}">
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+        Return to list
+    </a>
+
+{% endblock %}

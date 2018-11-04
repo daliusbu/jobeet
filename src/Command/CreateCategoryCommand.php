@@ -51,7 +51,7 @@ class CreateCategoryCommand extends Command
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         if(!$input->getArgument('name')){
-            $question = new Question('<question>Please choose a name: </question>');
+            $question = new Question('<comment>Please choose a name: </comment>');
             $question->setValidator(function($name){
                 if (empty($name)){
                     throw new \Exception('Name cannot be empty');
