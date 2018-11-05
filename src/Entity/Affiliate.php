@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\AffiliateRepository")
  * @ORM\Table(name="affiliates")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -77,13 +77,18 @@ class Affiliate
         return $this->categories;
     }
 
-    /**
-     * @param Category[]|ArrayCollection $categories
-     * @return Affiliate
-     */
-    public function setCategories($categories): self
+
+    public function addCategory(Category $category)
     {
-        $this->categories = $categories;
+        if(!$this->categories->contains($category)){
+            $this->categories->add($category);
+        }
+        return $this;
+    }
+
+    public function removeCategory(Category $category)
+    {
+        $this->categories->removeElement($category);
         return $this;
     }
 
