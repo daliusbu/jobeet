@@ -82,6 +82,7 @@ class JobController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $em->flush();
+            $this->addFlash('notice', 'The edited job was saved');
            return $this->redirectToRoute('admin.job.list');
         }
 
@@ -103,6 +104,7 @@ class JobController extends AbstractController
         if($this->isCsrfTokenValid('delete'.$job->getId(), $request->request->get('_token'))){
             $em->remove($job);
             $em->flush();
+            $this->addFlash('notice', 'Job was deleted');
         }
         return $this->redirectToRoute('admin.job.list');
     }

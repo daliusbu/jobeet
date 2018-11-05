@@ -14,6 +14,7 @@ use App\Entity\Job;
 use App\Form\JobType;
 use App\Repository\JobRepository;
 use App\Service\FileUploader;
+use App\Service\JobHistoryService;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -36,12 +37,13 @@ class JobController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/", name="job.list")
      */
-    public function list(EntityManagerInterface $em)
+    public function list(EntityManagerInterface $em, JobHistoryService $jobHistoryService)
     {
         $categories = $em->getRepository(Category::class)->findWithActiveJobs();
 
         return $this->render('job/list.html.twig', [
             'categories' => $categories,
+            'historyJobs'=>$jobHistoryService->getJobs(),
         ]);
     }
 
@@ -52,9 +54,10 @@ class JobController extends AbstractController
      * @Entity("job", expr="repository.findActiveJob(id)")
      * @Route("job/{id}", name="job.show", requirements={"id"="\d+"}, methods="GET")
      */
-    public function show(Job $job)
+    public function show(Job $job, JobHistoryService $jobHistoryService)
     {
 
+        $jobHistoryService->addJob($job);
         return $this->render('job/show.html.twig', [
             'job'=>$job
         ]);

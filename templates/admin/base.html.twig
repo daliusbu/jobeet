@@ -18,6 +18,9 @@
     </div>
 </nav>
 <div class="container">
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info" role="alert">{{ message }}</div>
+    {% endfor %}
     <div class="row">
         <div class="col-md-2">
             {% set currentRouteName = app.request.get('_route') %}
