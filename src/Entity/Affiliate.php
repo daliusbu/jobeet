@@ -95,7 +95,7 @@ class Affiliate
     /**
      * @return string
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
@@ -111,7 +111,7 @@ class Affiliate
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -127,7 +127,7 @@ class Affiliate
     /**
      * @return string
      */
-    public function getToken(): string
+    public function getToken(): ?string
     {
         return $this->token;
     }
@@ -159,7 +159,7 @@ class Affiliate
     /**
      * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }

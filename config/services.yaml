@@ -51,4 +51,5 @@ services:
 
     App\EventListener\AffiliateTokenListener:
         tags:
-            - {name: doctrine.event_listener, event: PrePersist }
+            - { name: doctrine.event_listener, event: prePersist }
+

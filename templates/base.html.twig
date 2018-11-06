@@ -12,9 +12,14 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" href="{{ path('job.list') }}">Jobeet</a>
                 </div>
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         {% if is_granted('ROLE_ADMIN') %}
                             <li>
@@ -23,9 +28,15 @@
                                 </div>
                             </li>
                         {% endif %}
+
+                        <li style="margin-right: 10px;">
+                            <div>
+                                <a href="{{ path('affiliate.create') }}" class="btn btn-default navbar-btn">Affiliates</a>
+                            </div>
+                        </li>
                         <li>
                             <div>
-                                <a href="#" class="btn btn-default navbar-btn">Post a Job</a>
+                                <a href="{{ path('job.create') }}" class="btn btn-default navbar-btn">Post a Job</a>
                             </div>
                         </li>
                         {% if app.user %}
